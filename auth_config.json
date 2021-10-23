@@ -1,4 +1,5 @@
 {
     "domain": "dev-9khs63qu.us.auth0.com",
-    "clientId": "xIaxhkO2sfnj1cvq3rQGgHxeT2mvzijc"
+    "clientId": "xIaxhkO2sfnj1cvq3rQGgHxeT2mvzijc",
+    "audience": "https://vue-express-api.com"
 }
