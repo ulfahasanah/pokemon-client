@@ -19,13 +19,12 @@ export default {
   methods: {
     async hitAPI() {
       const accessToken = await this.$auth.getTokenSilently()
-      let res = await axios.get("http://localhost:3000/", {
+      let res = await axios.get("http://localhost:3000/api/v1/pokemon", {
         headers: {
           Authorization: `Bearer ${accessToken}`
         }
       });
-      console.log(res.data);
-      return res.data;
+      return res.data.results;
     }
   }
 }
