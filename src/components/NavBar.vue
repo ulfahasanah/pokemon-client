@@ -1,0 +1,39 @@
+<template>
+  <div>
+      <b-navbar type="dark" variant="dark">
+        <b-navbar-nav>
+          <b-nav-item to="/">Home</b-nav-item>
+              <!-- Check that the SDK client is not currently loading before accessing is methods -->
+              <b-nav-item v-if="!$auth.loading">
+                <!-- show login when not authenticated -->
+                <a v-if="!$auth.isAuthenticated" @click="login"
+                  >Sign in</a
+                >
+                <!-- show logout when authenticated -->
+                <a v-if="$auth.isAuthenticated" @click="logout"
+                  >Log out</a
+                >
+              </b-nav-item>
+        </b-navbar-nav>
+      </b-navbar>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'NavBar',
+  components: {},
+  methods: {
+    // Log the user in
+    login() {
+      this.$auth.loginWithRedirect();
+    },
+    // Log the user out
+    logout() {
+      this.$auth.logout({
+        returnTo: window.location.origin
+      });
+    }
+  }
+}
+</script>
