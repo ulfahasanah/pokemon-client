@@ -1,32 +1,43 @@
 <template>
     <div>
-        <b-card v-for="(el, i) in pokemon" :key="i" no-body class="overflow-hidden" style="max-width: 540px;">
-            <b-row no-gutters>
-            <b-col md="6">
-                <b-card-img src="https://picsum.photos/400/400/?image=20" alt="Image" class="rounded-0"></b-card-img>
-            </b-col>
-            <b-col md="6">
-                <b-card-body title="Horizontal Card">
-                <b-card-text>
-                    This is a wider card with supporting text as a natural lead-in to additional content.
-                    This content is a little bit longer.
-                </b-card-text>
-                </b-card-body>
-            </b-col>
-            </b-row>
-        </b-card>
+        <div class="mt-5" v-if="isLoading">
+            <loading/>
+        </div>
+        <div v-if="!isLoading">
+            <b-card no-body class="mx-auto overflow-hidden mt-5" style="max-width: 360px;">
+                <b-row no-gutters>
+                <b-col md="6">
+                    <b-card-img :src="pokemon.sprites.front_default" alt="Image" class="rounded-0"></b-card-img>
+                </b-col>
+                <b-col md="6">
+                    <b-card-body :title="pokemon.name">
+                    <b-card-text>
+                        This is a wider card with supporting text as a natural lead-in to additional content.
+                        This content is a little bit longer.
+                    </b-card-text>
+                    </b-card-body>
+                </b-col>
+                </b-row>
+            </b-card>
+        </div>
     </div>
 </template>
 
 <script>
 import axios from 'axios' 
+import loading from '../components/Loading.vue'
+
 export default {
     data() {
         return {
-            pokemon: []
+            pokemon: {},
+            isLoading: true
         }
     },
-    mounted: function () {
+    components: {
+        loading
+    },
+    created: function () {
         this.getRandomPokemon();
     },
     methods: {
@@ -37,7 +48,9 @@ export default {
             Authorization: `Bearer ${accessToken}`
             }
         });
-        this.pokemon = res.data.results
+        console.log(res.data, "===")
+        this.pokemon = res.data
+        this.isLoading = false
         }
     }
 }

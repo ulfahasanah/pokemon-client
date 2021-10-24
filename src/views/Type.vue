@@ -2,7 +2,6 @@
   <div class="container">
     <div v-if="$auth.isAuthenticated">
         <side-bar/>
-        DISPLAY POKEMON LIST BASED ON TYPE
     </div>
     <div v-if="!$auth.isAuthenticated">
       <span>Please Sign in first</span>
@@ -22,6 +21,11 @@ export default {
     mounted : function() {
         this.getPokemontListByType()
     },
+    watch: {
+        "$route.params.id": function () {
+            this.getPokemontListByType()
+        }
+    },
     methods: {
         async getPokemontListByType () {
             const urlPath = this.$route.path
@@ -35,7 +39,7 @@ export default {
                 }
             });
 
-            console.log(res.data.results, "<><><><")
+            console.log(res.data.pokemon, "<><><><")
             // this.pokemon = res.data.results
             
         }

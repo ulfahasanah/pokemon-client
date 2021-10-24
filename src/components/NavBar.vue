@@ -2,9 +2,9 @@
   <div>
       <b-navbar type="dark" variant="dark">
         <b-navbar-nav class="mx-auto"> 
-          <b-nav-item to="/">Home</b-nav-item>
+          <b-nav-item to="/">Random</b-nav-item>
           <b-nav-item  v-b-toggle.sidebar-variant v-if="$auth.isAuthenticated">
-            Pokemon Types
+            Types
           </b-nav-item>
           <!-- Check that the SDK client is not currently loading before accessing is methods -->
           <b-nav-item v-if="!$auth.loading">

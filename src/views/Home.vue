@@ -1,8 +1,10 @@
 <template>
-  <div class="container">
+  <div class="container bv-example-row">
     <div v-if="$auth.isAuthenticated">
       <side-bar/>
-      <pokemon/>
+      <b-row>
+        <b-col md="6" offset-md="3"><pokemon/></b-col>
+      </b-row>
     </div>
     <div v-if="!$auth.isAuthenticated">
       <b-row class="mt-5">
