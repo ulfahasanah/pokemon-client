@@ -1,11 +1,9 @@
 <template>
    <div>
-    <!-- <b-button v-b-toggle.sidebar-variant>Select Type of Pokemon</b-button> -->
     <b-sidebar id="sidebar-variant" title="Pokemon Types" bg-variant="dark" text-variant="light" shadow>
         <b-list-group  v-for="(type, i) in pokemonTypes" :key="i">
-            <b-list-group-item class="text-center" :to="type.url"  variant="info">
+            <b-list-group-item class="text-center" :to="{ path: `/type/${type.url}` }"  variant="info" replace>
                 {{type.name.toUpperCase()}}
-                <!-- <router-link :to="{ path: '/', query: { type: type.url }}">{{type.name}}</router-link> -->
             </b-list-group-item>
         </b-list-group>
     </b-sidebar>
@@ -32,7 +30,7 @@ export default {
             res.data.results.forEach(element => {
                 const splitUrl = element.url.split('/')
                 const typeId = splitUrl[splitUrl.length-2]
-                element.url = `type/${typeId}`
+                element.url = `${typeId}`
             })
 
             this.pokemonTypes = res.data.results
