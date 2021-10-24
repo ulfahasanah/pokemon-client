@@ -1,6 +1,6 @@
 <template>
     <div>
-        <b-card no-body class="overflow-hidden" style="max-width: 540px;">
+        <b-card v-for="(el, i) in pokemon" :key="i" no-body class="overflow-hidden" style="max-width: 540px;">
             <b-row no-gutters>
             <b-col md="6">
                 <b-card-img src="https://picsum.photos/400/400/?image=20" alt="Image" class="rounded-0"></b-card-img>
@@ -19,8 +19,27 @@
 </template>
 
 <script>
+import axios from 'axios' 
 export default {
-
+    data() {
+        return {
+            pokemon: []
+        }
+    },
+    mounted: function () {
+        this.getRandomPokemon();
+    },
+    methods: {
+        async getRandomPokemon() {
+        const accessToken = await this.$auth.getTokenSilently()
+        let res = await axios.get("http://localhost:3000/api/v1/pokemon", {
+            headers: {
+            Authorization: `Bearer ${accessToken}`
+            }
+        });
+        this.pokemon = res.data.results
+        }
+    }
 }
 </script>
 

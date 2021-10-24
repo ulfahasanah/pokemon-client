@@ -1,31 +1,33 @@
 <template>
-  <div class="home">
-    <h1>Home</h1>
+  <div class="container">
     <div v-if="$auth.isAuthenticated">
-      <b-button variant="danger" @click="hitAPI()">Button</b-button>
+      <side-bar/>
+      <pokemon/>
     </div>
     <div v-if="!$auth.isAuthenticated">
-      <span>Please Sign in first</span>
-    </div>
+      <b-row class="mt-5">
+        <b-col>
+          <b-card >
+              <h4 class="text-center">Nothing to display, Please Sign in first! </h4>
+          </b-card>
+        </b-col>
+      </b-row>
+   </div>
   </div>
   
 </template>
 <script>
-import axios from 'axios' 
+import Pokemon from '../components/Pokemon.vue'
+import SideBar from "../components/SideBar.vue";
 
 export default {
   name: 'home',
-  components: {},
+  components: {
+    Pokemon,
+    SideBar
+  },
   methods: {
-    async hitAPI() {
-      const accessToken = await this.$auth.getTokenSilently()
-      let res = await axios.get("http://localhost:3000/api/v1/pokemon", {
-        headers: {
-          Authorization: `Bearer ${accessToken}`
-        }
-      });
-      return res.data.results;
-    }
+   
   }
 }
 </script>
