@@ -2,8 +2,8 @@
   <div>
       <b-navbar type="dark" variant="dark">
         <b-navbar-nav class="mx-auto"> 
-          <b-nav-item to="/">Random</b-nav-item>
-          <b-nav-item  v-b-toggle.sidebar-variant v-if="$auth.isAuthenticated">
+          <b-nav-item to="/" :active='$route.name == "Home"'>Random</b-nav-item>
+          <b-nav-item  v-b-toggle.sidebar-variant :active='$route.name == "Type"' v-if="$auth.isAuthenticated">
             Types
           </b-nav-item>
           <!-- Check that the SDK client is not currently loading before accessing is methods -->

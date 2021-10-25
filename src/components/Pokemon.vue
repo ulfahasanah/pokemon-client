@@ -4,10 +4,10 @@
             <loading/>
         </div>
         <div v-if="!isLoading">
-            <b-card no-body class="mx-auto overflow-hidden mt-4">
+            <b-card no-body class="mx-auto my-4 overflow-hidden">
                 <b-row no-gutters>
                 <b-col md="7" class="text-center mx-auto">
-                    <b-card-body :title="pokemon.name">
+                    <b-card-body :title="pokemon.name.toUpperCase()">
                     <b-card-img :src="pokemon.sprites.front_default" alt="Image" class="rounded-0"></b-card-img>
                      <GChart
                         type="BarChart"
@@ -55,7 +55,6 @@ export default {
             }
         });
         this.pokemon = res.data
-        console.log(res.data);
         let temp = [[], []]
         this.pokemon.stats.forEach(el => {
             temp[1].push(el.base_stat) 
