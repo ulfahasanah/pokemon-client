@@ -7,13 +7,7 @@
       </b-row>
     </div>
     <div v-if="!$auth.isAuthenticated">
-      <b-row class="mt-5">
-        <b-col>
-          <b-card >
-              <h4 class="text-center">Nothing to display, Please Sign in first! </h4>
-          </b-card>
-        </b-col>
-      </b-row>
+      <not-login/>
    </div>
   </div>
   
@@ -21,12 +15,14 @@
 <script>
 import Pokemon from '../components/Pokemon.vue'
 import SideBar from "../components/SideBar.vue";
+import NotLogin from '../components/NotLogin.vue'
 
 export default {
   name: 'home',
   components: {
     Pokemon,
-    SideBar
+    SideBar,
+    NotLogin
   },
   methods: {
    
