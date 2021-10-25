@@ -31,9 +31,11 @@ export default {
                 const splitUrl = element.url.split('/')
                 const typeId = splitUrl[splitUrl.length-2]
                 element.url = `${typeId}`
+            });
+            let newTypeList = res.data.results.filter( el => {
+                return el.name !== 'unknown'
             })
-
-            this.pokemonTypes = res.data.results
+            this.pokemonTypes = newTypeList
         }
     },
     created() {

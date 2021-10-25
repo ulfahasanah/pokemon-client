@@ -66,7 +66,7 @@ export default {
     methods: {
         async getPokemontListByType () {
             this.isLoading = true
-            const urlPath = this.$route.path
+            const urlPath = this.$route.path.split('/')
             const typeId = urlPath[urlPath.length-1]
             const accessToken = await this.$auth.getTokenSilently()
             let res = await axios.get(`http://localhost:3000/api/v1/pokemon/type/${typeId}`, {
