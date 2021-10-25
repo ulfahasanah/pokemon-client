@@ -48,6 +48,7 @@ export default {
     },
     methods: {
         async getRandomPokemon() {
+        this.isLoading = true
         const accessToken = await this.$auth.getTokenSilently()
         let res = await axios.get("http://localhost:3000/api/v1/pokemon", {
             headers: {

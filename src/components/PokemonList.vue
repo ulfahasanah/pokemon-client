@@ -65,6 +65,7 @@ export default {
     },
     methods: {
         async getPokemontListByType () {
+            this.isLoading = true
             const urlPath = this.$route.path
             const typeId = urlPath[urlPath.length-1]
             const accessToken = await this.$auth.getTokenSilently()
