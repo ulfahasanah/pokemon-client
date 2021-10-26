@@ -41,6 +41,7 @@
 import loading from "../components/Loading.vue"
 import { GChart } from 'vue-google-charts'
 import axios from "axios";
+import baseUrl from '../config/server'
 
 export default {
     data() {
@@ -69,7 +70,7 @@ export default {
             const urlPath = this.$route.path.split('/')
             const typeId = urlPath[urlPath.length-1]
             const accessToken = await this.$auth.getTokenSilently()
-            let res = await axios.get(`http://localhost:3000/api/v1/pokemon/type/${typeId}`, {
+            let res = await axios.get(`${baseUrl}/api/v1/pokemon/type/${typeId}`, {
                 headers: {
                 Authorization: `Bearer ${accessToken}`
                 }
@@ -88,7 +89,7 @@ export default {
         },
         async getPokemon(id) {
             const accessToken = await this.$auth.getTokenSilently()
-            let res = await axios.get("http://localhost:3000/api/v1/pokemon/" + id, {
+            let res = await axios.get(`${baseUrl}/api/v1/pokemon/` + id, {
                 headers: {
                     Authorization: `Bearer ${accessToken}`
                 }

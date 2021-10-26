@@ -11,6 +11,7 @@
 </template>
 <script>
 import axios from 'axios'
+import baseUrl from '../config/server'
 
 export default {
     data() {
@@ -21,7 +22,7 @@ export default {
     methods: {
         async getPokemonTypeList() {
             const accessToken = await this.$auth.getTokenSilently()
-            let res = await axios.get("http://localhost:3000/api/v1/pokemon/type", {
+            let res = await axios.get(`${baseUrl}/api/v1/pokemon/type`, {
                 headers: {
                 Authorization: `Bearer ${accessToken}`
                 }
