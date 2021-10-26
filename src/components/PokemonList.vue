@@ -85,16 +85,15 @@ export default {
             this.pokemonType = res.data.name
             let pokemon = res.data.pokemon
             let data = []
-            pokemon.forEach(async el => {
+            await Promise.all(pokemon.map(async (el) => {
                 const urlSplit = el.pokemon.url.split('/')
                 const id = urlSplit[urlSplit.length-2]
-                let pokemon = await this.getPokemon(id)
-                data.push(pokemon)
-            })
-                this.pokemonList = data
-                setTimeout(() => {
-                    this.isLoading = false
-                }, 7000);
+                let getPokemon = await this.getPokemon(id)
+                data.push(getPokemon)
+            }));
+
+            this.pokemonList = data
+            this.isLoading = false
         },
         async getPokemon(id) {
             const accessToken = await this.$auth.getTokenSilently()
