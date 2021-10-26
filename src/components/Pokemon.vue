@@ -81,7 +81,7 @@ export default {
             chart: {
             title: 'Stat Performance',
             },
-            bars: 'vertical', // Required for Material Bar Charts.
+            bars: 'vertical',
             hAxis: { format: 'decimal' },
             height: 450,
             width: 350

@@ -110,8 +110,8 @@ export default {
             pokemon.stats.forEach(el => {
                     temp[0].push(el.stat.name) 
                 });
-                const temp1 = ['stat performance'].concat(temp[0])
-                const temp2 = ['stat'].concat(temp[1])
+            const temp1 = ['stat performance'].concat(temp[0])
+            const temp2 = ['stat'].concat(temp[1])
             pokemon.stats = [temp1, temp2]
             return pokemon
         },
@@ -126,13 +126,13 @@ export default {
         chartOptions () {
         if (!this.chartsLib) return null
         return this.chartsLib.charts.Bar.convertOptions({
-            chart: {
-            title: 'Stat Performance',
-            },
-            bars: 'vertical', // Required for Material Bar Charts.
-            hAxis: { format: 'decimal' },
-            height: 450,
-            width: 350
+                chart: {
+                    title: 'Stat Performance',
+                },
+                bars: 'vertical',
+                hAxis: { format: 'decimal' },
+                height: 450,
+                width: 350
             })
         }
     }
