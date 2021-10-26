@@ -48,27 +48,27 @@ export default {
     },
     methods: {
         async getRandomPokemon() {
-        this.isLoading = true
-        const accessToken = await this.$auth.getTokenSilently()
-        let res = await axios.get(`${baseUrl}/api/v1/pokemon`, {
-            headers: {
-            Authorization: `Bearer ${accessToken}`
-            }
-        });
-        this.pokemon = res.data
-        let temp = [[], []]
-        this.pokemon.stats.forEach(el => {
-            temp[1].push(el.base_stat) 
-        });
-        this.pokemon.stats.forEach(el => {
-            temp[0].push(el.stat.name) 
-        });
-        this.pokemon.stats = temp
-        const temp1 = ['stat performance'].concat(temp[0])
-        const temp2 = ['stat'].concat(temp[1])
-        this.pokemon.stats = [temp1, temp2]
+            this.isLoading = true
+            const accessToken = await this.$auth.getTokenSilently()
+            let res = await axios.get(`${baseUrl}/api/v1/pokemon`, {
+                headers: {
+                Authorization: `Bearer ${accessToken}`
+                }
+            });
+            this.pokemon = res.data
+            let temp = [[], []]
+            this.pokemon.stats.forEach(el => {
+                temp[1].push(el.base_stat) 
+            });
+            this.pokemon.stats.forEach(el => {
+                temp[0].push(el.stat.name) 
+            });
+            this.pokemon.stats = temp
+            const temp1 = ['stat performance'].concat(temp[0])
+            const temp2 = ['stat'].concat(temp[1])
+            this.pokemon.stats = [temp1, temp2]
 
-        this.isLoading = false
+            this.isLoading = false
         },
          onChartReady (chart, google) {
             this.chartsLib = google
@@ -78,13 +78,13 @@ export default {
         chartOptions () {
         if (!this.chartsLib) return null
         return this.chartsLib.charts.Bar.convertOptions({
-            chart: {
-            title: 'Stat Performance',
-            },
-            bars: 'vertical',
-            hAxis: { format: 'decimal' },
-            height: 450,
-            width: 350
+                chart: {
+                    title: 'Stat Performance',
+                },
+                bars: 'vertical',
+                hAxis: { format: 'decimal' },
+                height: 450,
+                width: 350
             })
         }
     }
