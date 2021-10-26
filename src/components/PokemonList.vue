@@ -33,10 +33,10 @@
                     </b-card>
                 </b-col>
             </b-row>
-            <b-row v-if="pokemonList.length == 0">
+            <b-row class="mt-5" v-if="pokemonList.length == 0">
                 <b-col>
                     <b-card>
-                        <h4 class="text-center">Nothing to display, Please Sign in first! </h4>
+                        <h4 class="text-center">No pokemon list for {{ pokemonType }} type </h4>
                     </b-card>
                 </b-col>
             </b-row>
