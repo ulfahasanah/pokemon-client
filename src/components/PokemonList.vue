@@ -92,7 +92,9 @@ export default {
                 data.push(pokemon)
             })
                 this.pokemonList = data
-                this.isLoading = false
+                setTimeout(() => {
+                    this.isLoading = false
+                }, 7000);
         },
         async getPokemon(id) {
             const accessToken = await this.$auth.getTokenSilently()
