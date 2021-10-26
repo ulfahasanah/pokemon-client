@@ -11,7 +11,7 @@
                     </b-jumbotron>
                 </b-col>
             </b-row>
-            <b-row no-gutters>
+            <b-row v-if="pokemonList.length > 0" no-gutters>
                 <b-col md="5" class="mx-5 my-5" v-for="(el, i) in pokemonList" :key="i">
                     <b-card no-body class="overflow-hidden mt-4">
                         <b-card-body class="d-flex">
@@ -30,6 +30,13 @@
                                 />
                             </b-col>
                         </b-card-body>
+                    </b-card>
+                </b-col>
+            </b-row>
+            <b-row v-if="pokemonList.length == 0">
+                <b-col>
+                    <b-card>
+                        <h4 class="text-center">Nothing to display, Please Sign in first! </h4>
                     </b-card>
                 </b-col>
             </b-row>
