@@ -28,18 +28,22 @@ export default {
                 }
             });
 
+            //Get Type Id To get list pokemon based on type
             res.data.results.forEach(element => {
                 const splitUrl = element.url.split('/')
                 const typeId = splitUrl[splitUrl.length-2]
                 element.url = `${typeId}`
             });
+
+            //There are only 18 pokemon types except unknown and shadow , source: https://pokemon.fandom.com/wiki/Types
             let newTypeList = res.data.results.filter( el => {
-                return el.name !== 'unknown'
+                return el.name !== 'unknown' && el.name !== 'shadow'
             })
             this.pokemonTypes = newTypeList
         }
     },
     created() {
+        //Hit API before template is rendered
         this.getPokemonTypeList()
     }
 }

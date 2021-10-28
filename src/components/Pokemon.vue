@@ -44,9 +44,11 @@ export default {
         GChart
     },
     created: function () {
+        //Hit API before template is rendered
         this.getRandomPokemon();
     },
     methods: {
+        //Get one random pokemon
         async getRandomPokemon() {
             this.isLoading = true
             const accessToken = await this.$auth.getTokenSilently()
@@ -56,6 +58,8 @@ export default {
                 }
             });
             this.pokemon = res.data
+
+            //Store data for bar cart
             let temp = [[], []]
             this.pokemon.stats.forEach(el => {
                 temp[1].push(el.base_stat) 
@@ -64,6 +68,8 @@ export default {
                 temp[0].push(el.stat.name) 
             });
             this.pokemon.stats = temp
+
+            //Set up the format for data bar cart
             const temp1 = ['stat performance'].concat(temp[0])
             const temp2 = ['stat'].concat(temp[1])
             this.pokemon.stats = [temp1, temp2]

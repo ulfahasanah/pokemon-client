@@ -64,15 +64,17 @@ export default {
         GChart
     },
     created : function() {
-        this.getPokemontListByType()
+        //Hit API before template is rendered
+        this.getPokemonListByType()
     },
     watch: {
+        //Fetch pokemon list which is selected everytime on changed
         "$route.params.id": function () {
-            this.getPokemontListByType()
+            this.getPokemonListByType()
         }
     },
     methods: {
-        async getPokemontListByType () {
+        async getPokemonListByType () {
             this.isLoading = true
             const urlPath = this.$route.path.split('/')
             const typeId = urlPath[urlPath.length-1]
@@ -82,9 +84,13 @@ export default {
                 Authorization: `Bearer ${accessToken}`
                 }
             });
+
+            //Store list pokemon type
             this.pokemonType = res.data.name
             let pokemon = res.data.pokemon
             let data = []
+
+            //Get data each pokemon based on list pokemon type which is selected
             await Promise.all(pokemon.map(async (el) => {
                 const urlSplit = el.pokemon.url.split('/')
                 const id = urlSplit[urlSplit.length-2]
@@ -103,6 +109,8 @@ export default {
                 }
             });
             let pokemon = res.data
+
+            //Store data for bar cart
             let temp = [[], []]
             pokemon.stats.forEach(el => {
                     temp[1].push(el.base_stat) 
@@ -110,6 +118,7 @@ export default {
             pokemon.stats.forEach(el => {
                     temp[0].push(el.stat.name) 
                 });
+            //Set up the format for data bar cart
             const temp1 = ['stat performance'].concat(temp[0])
             const temp2 = ['stat'].concat(temp[1])
             pokemon.stats = [temp1, temp2]
