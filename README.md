@@ -31,7 +31,7 @@ Here's a pokemon web application that utilizing:
 * NodeJS as back-end services 
 * Auth0 as its authentication
 
-You must sign in first to see the pokemon.
+You must sign in first to see the pokemon. You can sign in using existing email: `admin@gmail.com` and password: `Abcd-1234`.
 After signing in, the app can shows a random Pokemon on `Random` menu and list of Pokemon on `Types` menu.
 On Types menu, it shows list of Pokemon based on a type which can be selected on sidebar. 
 Each pokemon has its stats performance which is displayed on bar cart utilizing Vue Google Cart.
